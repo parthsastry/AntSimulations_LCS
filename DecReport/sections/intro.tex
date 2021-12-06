@@ -1,0 +1,21 @@
+\subsection{Biological Background}
+Chemotaxis (from the stem of “chemistry” and Gr. $\tau\acute{\alpha}\xi\iota\varsigma$, arrangement), is a biological term for the attraction exercised on living or growing organisms or their members by chemical substances \cite{chemotaxisEncyclopedia}. As an example, during the expansion of a tumour, formation of new blood vessels, known as \textit{angiogenesis}, also involves chemotaxis. Chemical agents secreted by a tumor attract neighboring endothelial cells. These cells form the surface of blood vessels which provide nourishment to the tumour. \cite{MPlank:Angiogenesis}\cite{FriedmanTello2002}
+
+Ants communicate with each other using pheromones, sounds, and touch \cite{Jackson2006}. They perceive smells via their antennae and leave pheromone trails on the ground where they may be followed by other ants. This is notably seen in foraging parties. When a forager ant finds food, it marks a trail on the way back to the colony, which is reinforced when other ants follow the previous trail and head back with food to the colony. \cite{Goss1989}
+
+This is chemotaxis driven not by external chemical gradients, but by chemicals laid down by other individual entites, which makes the motion of ants interesting to study. Some questions to ask are - can ant motion be fully explained by chemotactic stimuli? Do ants, like birds or fish schools, form larger subgroups and tend to follow other ants? We explore these questions and try to analyse the dynamics that arise when incorporating stimuli other than chemotaxis. See Section \ref{Section:Schooling}
+
+\subsection{Mathematical Background}
+Analysing the movement of individual entities driven by chemotaxis, as being driven by a background flow (analogous to particles being carried by a fluid flow), alllows us to comment on the underlying dynamics of the flow. This is where Lagrangian Coherent Structures come in. The theory is discussed further in Section \ref{section:LCS} and the the emergent LCSs seen in the results of our simulation are discussed.
+
+The mathematical description of bodies whose motion is dictated by chemotaxis is given by reinforced random walks (RRWs). A random walk is a mathematical object describing a path characterized by succession of random steps over some space (in our case, the position space). In RRWs, paths followed by individuals can be \textit{reinforced}, as in the case of motion of ants which reinforce trails by laying down pheromone. RRWs have been extensively used to model observed chemotaxis phenomena \cite{Codling2008}\cite{Pemantle2007}.
+
+In her 2017 paper, Ria Das extends the models given by Codling, Plank and Benhamou \cite{Codling2008} to account for the inertia of biological entities to continue moving in their direction of motion, resisting changes in velocity \cite{RiaDas2017}. They construct a continuous random walk model based on diffusion-advection partial differential equations that combine memory and reinforcement. The basis for their system  is a pair of pure reinforcement equations for the particle density and chemical concentration in a  one-dimensional environment from Othmer and Stevens \cite{Stevens1997}. 
+
+\subsection{Combining Multiple Models}
+In their 2002 paper, Iain Couzin and Nigel Franks developed a set of movement rules of individual ants on trails that lead to a collective choice of direction
+and the formation of distinct traffic lanes that minimize congestion \cite{Couzin2003}. The general principle of turning towards a positive pheromone concentration gradient is common across the continuous model given by Ria Das and the model given by Couzin and Franks.
+
+They differ in that Couzin and Franks were modelling the propensity of ants to follow a pre-existing trail and align their directions to each other. Ria Das also tries to incorporate pheromone deposition in their continuous random walk model.
+
+We try to combine the rules of motion of individual ants given by Couzin and Franks, with the more real-world nature of how trails form - by continuous deposition and evaporation of pheromone along the positions of the ants.

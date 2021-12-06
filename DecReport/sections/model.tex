@@ -1,0 +1,84 @@
+Interaction of ants with the pheromone deposited on the ground, and with other ants is taken from Couzin and Franks' 2002 paper \cite{Couzin2003}. To simulate pheromone deposition and evaporation, we take ideas from Ria Das' paper, and apply some modifications to account for discrete individuals depositing pheromone, and deposition on discrete grid points.
+
+\subsection{Overview}
+$N$ ants are simulated. We keep track of each ants' position vector $\vec{c}_i(t)$ and orientation vector $\vec{v}_i(t)$. Ant heads are at position $\vec{c}_i(t) + 1/2 \beta \vec{v}_i(t)$, where $\beta = 0.8cm$ is the ant body length. The left and right antennae each extend a distance $\phi = 0.4cm$ from the head at an angle of $45^\circ$ to the ant’s body orientation. In the simulation, ants will turn away from others if they are approached too closely within either of two local areas. 
+
+\begin{enumerate}
+    \item The first is a circle, radius $r_d = 0.4 cm$, extending from the ant’s centre, $\vec{c}_i(t)$, representing very close proximity to the body and legs of the ant.
+    \item The second is an arc that extends ahead of the ant a distance $r_p = 1.2 cm$ from $\vec{c}_i(t)$ and has an internal angle $\alpha$ (taken to be $90^\circ$ for the simulations); this may represent a local visual field or tactile range of the antennae
+\end{enumerate} 
+
+Individuals tend to turn away from others within these zones with a turning rate $\theta_a = 1000^\circ \, s^{-1}$. When not avoiding collisions, ants respond to local concentrations of pheromone.
+
+Ants turn towards the highest stimulus (perceived pheromone concentration) at turning rate $\theta_p = 500^\circ \, s^{-1}$. When ants are not avoiding collisions they accelerate with acceleration $\mu = 50 cm \, s^{-2}$ until they reach their desired speed $u_{des} = 13 cm \, s^{-1}$.
+
+Time is simulated via discrete steps of $0.02 s$ each. At each time-step, the direction vectors and then the position vectors of all ants are updated in parallel.
+
+\subsection{Inter-Ant Interaction}
+
+If there are ants $j$ within the interaction zone (specified above) of ant $i$, ant $i$ turns away from them by turning towards a desired vector - 
+
+\begin{equation}
+    \vec{d}_i(t + \Delta t) = \sum_{j \neq i} \frac{\vec{c}_i(t) - \vec{c}_j(t)}{|\vec{c}_i(t) - \vec{c}_j(t)|}
+\end{equation}
+
+The ant can, of course, turn through a maximum of $\theta_a\Delta t$ degrees in $\Delta t$. If this angle is greater than, or equal to the angle between initial orientation $\vec{v}_i(t)$ and desired orientation $\vec{d}_i(t)$, then it matches the desired orientation. Otherwise it turns through $\theta_a\Delta t$ degrees towards the desired orientation.
+
+\subsection{Pheromone Interaction}
+
+Deposition of pheromone is specified in the subsection \ref{subsec:pheromone}. If there are no other ants within the interaction zones of ant $i$, it responds instead to pheromone concentration. At a given point in time, the ant samples concentrations $C_l$ and $C_r$ at the ends of the left and right antennae,
+respectively. To simplify calculations, instead of converting this into a stimullus intensity and adding gaussian noise, as is specified in \cite{Couzin2003}, we simply sample the concentrations at the two antennae, and turn $\theta_p \Delta t$ degrees towards the higher concentration.
+
+If no concentration difference is detected, the orientation doesn't change.
+
+All turnings (inter-ant interactions, as well as pheromone interactions) are subject to turning error. This is simulated by adding Gaussian noise of mean $0$ and standard deviation $0.5 \text{rad}$ to $\vec{v}_i(t + \Delta t)$.
+
+\subsection{Pheromone Concentration}
+\label{subsec:pheromone}
+
+This is a new feature we add to the original model derived by Couzin and Franks. In their model, the pheromone concentration was simulated for some pre-existing trail after some diffusion for time $\tau$. This was fine for their analysis, since they were studying how ants follow pre-existing trails and the structures that emerge their. We want to study how ants behave in isolation, so the pheromone concentration is a changing entity, being deposited by individual ants and subject to diffusion and evaporation.
+
+In Ria Das' continuous time/space model, the pheromone concentration $g$ was updated as follows - 
+
+\begin{equation}
+    \frac{\partial g}{\partial t} = \lambda \rho - g
+    \label{eqn:pheromone}
+\end{equation}
+
+where, $\rho$ is the particle density at some point, $g$ is the pheromone concentration at that point, and $\lambda$ is some constant derived from how much each phoeromone is deposited by each ant.
+
+This is obviously a simulation well-suited to a continuous time/space model, but doesn't translate exactly to a discrete model. There are a few issues with simply depositing pheromone in a small area surrounding the ants, and then scaling the concentration matrix by some factor to account for evaporation, and the major ones are -
+
+\begin{enumerate}
+    \item this doesn't take into account the fact that pheromone is likely to diffuse into surrounding areas. This was considered for pre-existing trails in Couzin and Franks' paper, and we use an adaptation of the same to account for diffusion
+    \item depositing pheromone only at ant positions will lead to severe gradients and the concentration matrix is likely to be a sparse one, with zeros at a majority of places, and populated only at a few
+\end{enumerate}
+
+Our pheromone deposition happens in the form of a gaussian around each ant, the standard deviation of which is set to not make the pheromone spread beyond 2-3 grid points. This is to prevent the sharp gradients we are otherwise likely to observe, even with a diffusion filter in the next time step.
+
+To account for diffusion and evaporation, at each time step, we convolve our concentration matrix $g$ with a filter $D$ to account for diffusion and evaporation. For our simulations, we took $D$ to be a $3 \times 3$ gaussian kernel, scaled by $(1 - \Delta t)$, i.e - 
+
+\begin{align*}
+    D & = (1 - \Delta t) *
+    \begin{bmatrix}
+        0.0113  &  0.0838  &  0.0113 \\
+        0.0838  &  0.6193  &  0.0838 \\
+        0.0113  &  0.0838  &  0.0113
+    \end{bmatrix} \\
+    & = 
+    \begin{bmatrix}
+        0.0111  &  0.0821  &  0.0111 \\
+        0.0821  &  0.6070  &  0.0821 \\
+        0.0111  &  0.0821  &  0.0111
+    \end{bmatrix}
+\end{align*}
+
+This serves the dual purpose of 'spreading' the pheromone at each point to surrounding points, and by scaling with $(1 - \Delta t)$, we ensure that some pheromone is always lost to environmental affects like evaporation (and is mathematically analogous to the $- g$ factor that exists in equation \ref{eqn:pheromone}). This isn't a perfect model since we don't treat diffusion mathematically rigorously, but it suffices for our purposes.
+
+\subsection{Ant Velocity}
+
+Ants move with their $u_{\text{des}} = 13 \, cm \, s^{-1}$ unless there are ants right in front of them, within their secondary interaction zone (within $r_p$ in an arc in front), in which case they decelerate with $\mu$. This happens until ants reach their minimum velocity $u_{\text{min}} = 2 \, cm \, s^{-1}$.
+
+\subsection{Grid}
+
+The grid is a $1m \times 1m$ discrete grid, with grid spacing $\Delta x$ (variable, discussed in next section). The grid has periodic boundary conditions, which means that the ants loop around, on the physical grid. To perform LCS analysis, we keep track of the actual positions of all ants (without keeping them forcibly on the grid). Ant position is a continuous variable, but pheromone concentration is stored on these grid points. 
