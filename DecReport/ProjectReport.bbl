@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+
+\bibitem{chemotaxisEncyclopedia}
+Inc. Encyclopædia~Britannica.
+\newblock Chemotaxis.
+\newblock Encyclopaedia Brittanica, 1911.
+
+\bibitem{MPlank:Angiogenesis}
+Michael~John Plank.
+\newblock {\em Cell-Based Models of Tumour Angiogenesis}.
+\newblock PhD thesis, The University of Leeds, Department of Applied
+  Mathematics, 2003.
+
+\bibitem{FriedmanTello2002}
+Avner Friedman and J.Ignacio Tello.
+\newblock Stability of solutions of chemotaxis equations in reinforced random
+  walks.
+\newblock {\em Journal of Mathematical Analysis and Applications},
+  272(1):138--163, August 2002.
+
+\bibitem{Jackson2006}
+Duncan Jackson and Francis Ratnieks.
+\newblock Communication in ants.
+\newblock {\em Current Biology}, 16(15):R570--R574, August 2006.
+
+\bibitem{Goss1989}
+S.~Goss, S.~Aron, J.~L. Deneubourg, and J.~M. Pasteels.
+\newblock Self-organized shortcuts in the argentine ant.
+\newblock {\em Naturwissenschaften}, 76(12):579--581, December 1989.
+
+\bibitem{Codling2008}
+Edward~A Codling, Michael~J Plank, and Simon Benhamou.
+\newblock Random walk models in biology.
+\newblock {\em Journal of The Royal Society Interface}, 5(25):813--834, April
+  2008.
+
+\bibitem{Pemantle2007}
+Robin Pemantle.
+\newblock A survey of random processes with reinforcement.
+\newblock {\em Probability Surveys}, 4, 2007.
+
+\bibitem{RiaDas2017}
+Ria Das.
+\newblock Exploring the ant mill: Numerical and analytical investigations of
+  mixed memory-reinforcement systems, 2017.
+
+\bibitem{Stevens1997}
+Angela Stevens and Hans~G. Othmer.
+\newblock Aggregation, blowup, and collapse: The {ABC}{\textquotesingle}s of
+  taxis in reinforced random walks.
+\newblock {\em {SIAM} Journal on Applied Mathematics}, 57(4):1044--1081, August
+  1997.
+
+\bibitem{Couzin2003}
+I.~D. Couzin and N.~R. Franks.
+\newblock Self-organized lane formation and optimized traffic flow in army
+  ants.
+\newblock {\em Proceedings of the Royal Society of London. Series B: Biological
+  Sciences}, 270(1511):139--146, January 2003.
+
+\bibitem{Haller2000}
+G.~Haller and G.~Yuan.
+\newblock Lagrangian coherent structures and mixing in two-dimensional
+  turbulence.
+\newblock {\em Physica D: Nonlinear Phenomena}, 147(3-4):352--370, December
+  2000.
+
+\bibitem{LCSTut}
+Shawn Shadden.
+\newblock Lagrangian coherent structures: Analysis of time-dependent dynamical
+  systems using finite-time lyapunov exponents, 2005.
+
+\end{thebibliography}

@@ -1,0 +1,51 @@
+\documentclass{eusflat2019}
+
+\usepackage{amsmath,amssymb}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{array}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\title{\bf Exploring Lagrangian Coherent Structures in Boids-like Simulations of Isolated Ant Colonies}
+
+\renewcommand\vec{\mathbf}
+
+\author{{\bf Parth Sastry}\\
+Undergraduate, Department of Physics, Indian Institute of Technology - Bombay \\ parth.sastry@iitb.ac.in}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\textit{Taxis} is the movement of organisms in response to stimuli like light, sound, food presence, etc. The primary driver of ant movement is \textit{chemotaxis}, where ants get directed by the concentration gradient of pheromones they deposit on the ground. This leads to emergent behaviour such as lane formation when foraging, and in rare cases, formation of large circular ant mills when ants are moved to a new environment. We try to model the movement of individual ants as a mixed random walk with memory. We then analyse the Lagrangian Coherent Structures that emerge in this motion, treating individul ants as being driven by a background 'flow'.
+
+{\bf Keywords:} Chemotaxis, Random Walks, Lagrangian Coherent Structures
+\end{abstract}
+
+\section{Introduction}
+\label{section:intro}
+\input{sections/intro.tex}
+
+\section{Model}
+\label{section:model}
+\input{sections/model.tex}
+
+\section{Results}
+\label{section:results}
+\input{sections/results.tex}
+
+\section{LCS (Lagrangian Coherent Structure) Analysis} 
+\label{section:LCS}
+\input{sections/LCSanalysis.tex}
+
+\section{Next Steps}
+\label{sec:nextsteps}
+\input{sections/nextsteps.tex}
+
+\bibliographystyle{unsrt}
+\bibliography{AntMill}
+
+\end{document}

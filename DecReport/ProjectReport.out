@@ -1,0 +1,17 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Biological Background}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Mathematical Background}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Combining Multiple Models}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{Model}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{Overview}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Inter-Ant Interaction}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.3}{Pheromone Interaction}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.4}{Pheromone Concentration}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.5}{Ant Velocity}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.6}{Grid}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{Results}{}% 12
+\BOOKMARK [1][-]{section.4}{LCS \(Lagrangian Coherent Structure\) Analysis}{}% 13
+\BOOKMARK [2][-]{subsection.4.1}{Background}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.2}{Finite-Time Lyapunov Exponents}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.3}{FTLE fields for our model}{section.4}% 16
+\BOOKMARK [1][-]{section.5}{Next Steps}{}% 17
